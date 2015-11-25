@@ -19,6 +19,7 @@ class Human < Player
   end
 
   def geture=
+    @gesture = nil
     puts "Please enter R/P/S."
     print "> "
     @gesture = gets.chomp.upcase
@@ -33,6 +34,7 @@ class Computer < Player
   end
 
   def gesture=
+    @gesture = nil
     @gesture = ["R", "P", "S"].shuffle.last
   end
 end
@@ -48,22 +50,22 @@ class Game
     puts "************************************"
   end
 
-  def judge(gesture1, gesture2)
-    case gesture1
+  def judge(player1, player2)
+    case player1.gesture
     when "R"
-      case gesture2
+      case player2.gesture
       when "R" then result = "deuce"
       when "P" then result = "lose"
       when "S" then result = "win"
       else ErrorMessage end
     when "P"
-      case gesture2
+      case player2.gesture
       when "R" then result = "win"
       when "P" then result = "deuce"
       when "S" then result = "lose"
       else ErrorMessage end
     when "S"
-      case gesture2
+      case player2.gesture
       when "R" then result = "lose"
       when "P" then result = "win"
       when "S" then result = "deuce"
